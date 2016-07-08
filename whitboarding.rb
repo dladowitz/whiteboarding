@@ -1,3 +1,34 @@
+def is_palindrome?(string)
+  start_index = 0
+  end_index = string.length - 1
+
+  while start_index <= string.length / 2
+    while string[start_index] == " "
+      start_index += 1
+    end
+
+    while string[end_index] == " "
+      end_index -= 1
+    end
+
+    unless string[start_index] == string[end_index]
+      return false
+    end
+
+    start_index += 1
+    end_index -= 1
+  end
+
+  return true
+end
+
+
+puts is_palindrome?("AMA")
+puts is_palindrome?("A MA")
+puts is_palindrome?("racecar")
+puts is_palindrome?("JOHHNY")
+
+
 def majority_element(array)
   count = {}
   majority_minimum = (array.length / 2)
@@ -15,8 +46,8 @@ def majority_element(array)
   end
 end
 
-array = [1,2,3,1,3,1,1,1,2,2,3,3,3,3,3,3,3,3,3,3]
-p majority_element(array)
+# array = [1,2,3,1,3,1,1,1,2,2,3,3,3,3,3,3,3,3,3,3]
+# p majority_element(array)
 
 
 
