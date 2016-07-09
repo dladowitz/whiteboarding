@@ -1,50 +1,50 @@
-def is_palindrome?(string)
-  start_index = 0
-  end_index = string.length - 1
-
-  while start_index <= string.length / 2
-    while string[start_index] == " "
-      start_index += 1
-    end
-
-    while string[end_index] == " "
-      end_index -= 1
-    end
-
-    unless string[start_index] == string[end_index]
-      return false
-    end
-
-    start_index += 1
-    end_index -= 1
-  end
-
-  return true
-end
-
-
-puts is_palindrome?("AMA")
-puts is_palindrome?("A MA")
-puts is_palindrome?("racecar")
-puts is_palindrome?("JOHHNY")
-
-
-def majority_element(array)
-  count = {}
-  majority_minimum = (array.length / 2)
-
-  array.each do |element|
-    if count[element]
-      count[element] += 1
-       if count[element] > majority_minimum
-         puts count
-         return element
-       end
-    else
-      count[element] = 1
-    end
-  end
-end
+# def is_palindrome?(string)
+#   start_index = 0
+#   end_index = string.length - 1
+#
+#   while start_index <= string.length / 2
+#     while string[start_index] == " "
+#       start_index += 1
+#     end
+#
+#     while string[end_index] == " "
+#       end_index -= 1
+#     end
+#
+#     unless string[start_index] == string[end_index]
+#       return false
+#     end
+#
+#     start_index += 1
+#     end_index -= 1
+#   end
+#
+#   return true
+# end
+#
+#
+# puts is_palindrome?("AMA")
+# puts is_palindrome?("A MA")
+# puts is_palindrome?("racecar")
+# puts is_palindrome?("JOHHNY")
+#
+#
+# def majority_element(array)
+#   count = {}
+#   majority_minimum = (array.length / 2)
+#
+#   array.each do |element|
+#     if count[element]
+#       count[element] += 1
+#        if count[element] > majority_minimum
+#          puts count
+#          return element
+#        end
+#     else
+#       count[element] = 1
+#     end
+#   end
+# end
 
 # array = [1,2,3,1,3,1,1,1,2,2,3,3,3,3,3,3,3,3,3,3]
 # p majority_element(array)
@@ -80,20 +80,32 @@ end
 # ○ Output: 3
 
 
-def find_missing(array)
-  full_array = []
-  (array.length+2).times{|num| full_array << num }
-  full_array.shift 1
+# def find_missing(array)
+#   full_array = []
+#   (array.length+2).times{|num| full_array << num }
+#   full_array.shift 1
+#
+#   full_array.each do |element|
+#     if array.include?(element)
+#       next
+#     else
+#       puts "Element missing is: #{element}"
+#     end
+#   end
+# end
 
-  full_array.each do |element|
-    if array.include?(element)
+def find_missing(array)
+  full_length = array.length + 2
+  full_length.times do |num|
+    next if num == 0
+
+    if array.include? num
       next
     else
-      puts "Element missing is: #{element}"
+      puts "missing element: #{num}"
     end
   end
 end
-
 
 find_missing([2, 3, 1, 5])
 find_missing([2, 3, 1, 4])
