@@ -78,3 +78,22 @@ end
 # ○ Output: 2
 #
 # ○ Output: 3
+
+
+def find_missing(array)
+  full_array = []
+  (array.length+2).times{|num| full_array << num }
+  full_array.shift 1
+
+  full_array.each do |element|
+    if array.include?(element)
+      next
+    else
+      puts "Element missing is: #{element}"
+    end
+  end
+end
+
+
+find_missing([2, 3, 1, 5])
+find_missing([2, 3, 1, 4])
