@@ -1,3 +1,55 @@
+def find_substring(string, substring)
+  count = 0
+  @index = 0
+
+  until @index >= string.length #iterate over string
+    puts "In String @index: #{@index}"
+
+    if string[@index] == substring[0]
+      puts "<<<<<<< matched C"
+      if substring_match?(string, substring)
+        count += 1
+      end
+    else
+      @index += 1
+    end
+
+  end
+
+  return count
+end
+
+
+def substring_match?(string, substring)
+  index_start = @index
+  sub_index = 0
+  matched = true
+
+  substring.length.times do  #iterate over substring
+    puts "In Substring @index: #{@index}"
+
+    if string[@index] == substring[sub_index]
+      puts "matched: #{string[@index]} with #{substring[sub_index]}."
+      sub_index += 1
+      @index += 1
+      puts "Incrementing @index in substring_match: #{@index}"
+    else
+      puts "Missmatch: #{string[@index]} with #{substring[sub_index]}."
+      matched = false
+      # sub_index += 1
+      # @index += 1
+      # puts "Incrementing @index in substring_match: #{@index}"
+      return false
+    end
+  end
+
+  puts "Full Substring Matched!!" if matched
+  return matched
+end
+
+puts find_substring("coowocowowcowoccowo", "cow")
+
+
 # def is_palindrome?(string)
 #   start_index = 0
 #   end_index = string.length - 1
@@ -94,18 +146,18 @@
 #   end
 # end
 
-def find_missing(array)
-  full_length = array.length + 2
-  full_length.times do |num|
-    next if num == 0
-
-    if array.include? num
-      next
-    else
-      puts "missing element: #{num}"
-    end
-  end
-end
-
-find_missing([2, 3, 1, 5])
-find_missing([2, 3, 1, 4])
+# def find_missing(array)
+#   full_length = array.length + 2
+#   full_length.times do |num|
+#     next if num == 0
+#
+#     if array.include? num
+#       next
+#     else
+#       puts "missing element: #{num}"
+#     end
+#   end
+# end
+#
+# find_missing([2, 3, 1, 5])
+# find_missing([2, 3, 1, 4])
