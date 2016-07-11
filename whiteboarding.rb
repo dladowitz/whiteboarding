@@ -1,53 +1,110 @@
-def find_substring(string, substring)
-  count = 0
-  @index = 0
-
-  until @index >= string.length #iterate over string
-    puts "In String @index: #{@index}"
-
-    if string[@index] == substring[0]
-      puts "<<<<<<< matched C"
-      if substring_match?(string, substring)
-        count += 1
-      end
-    else
-      @index += 1
-    end
-
+class MyQueue
+  def initialize
+    @stack1 = []
+    @stack2 = []
   end
 
-  return count
-end
+  def enqueue(element)
+    @stack1.push element
+    puts "Queue length is: #{length}"
+  end
 
-
-def substring_match?(string, substring)
-  index_start = @index
-  sub_index = 0
-  matched = true
-
-  substring.length.times do  #iterate over substring
-    puts "In Substring @index: #{@index}"
-
-    if string[@index] == substring[sub_index]
-      puts "matched: #{string[@index]} with #{substring[sub_index]}."
-      sub_index += 1
-      @index += 1
-      puts "Incrementing @index in substring_match: #{@index}"
+  def dequeue
+    if @stack2.empty? && @stack1.empty?
+      puts "Queue is empty"
+    elsif @stack2.empty?
+      transfer
+      puts "Queue length is: #{length-1}"
+      @stack2.pop
     else
-      puts "Missmatch: #{string[@index]} with #{substring[sub_index]}."
-      matched = false
-      # sub_index += 1
-      # @index += 1
-      # puts "Incrementing @index in substring_match: #{@index}"
-      return false
+      puts "Queue length is: #{length-1}"
+      @stack2.pop
     end
   end
 
-  puts "Full Substring Matched!!" if matched
-  return matched
+  def length
+    @stack1.length + @stack2.length
+  end
+
+  private
+
+  def transfer
+    until @stack1.empty?
+      @stack2 << @stack1.pop
+    end
+  end
 end
 
-puts find_substring("coowocowowcowoccowo", "cow")
+
+
+
+
+
+
+# def find_misssing(array)
+#   count = array.length + 1
+#   (1..count).each do |element|
+#     unless array.include? element
+#       puts "Missing number is: #{element}"
+#       return
+#     end
+#   end
+# end
+#
+#
+# find_misssing([1,2,5,3])
+#
+# find_misssing [6,2,7,1,4,5]
+# def find_substring(string, substring)
+#   count = 0
+#   @index = 0
+#
+#   until @index >= string.length #iterate over string
+#     puts "In String @index: #{@index}"
+#
+#     if string[@index] == substring[0]
+#       puts "<<<<<<< matched C"
+#       if substring_match?(string, substring)
+#         count += 1
+#       end
+#     else
+#       @index += 1
+#     end
+#
+#   end
+#
+#   return count
+# end
+#
+#
+# def substring_match?(string, substring)
+#   index_start = @index
+#   sub_index = 0
+#   matched = true
+#
+#   substring.length.times do  #iterate over substring
+#     puts "In Substring @index: #{@index}"
+#
+#     if string[@index] == substring[sub_index]
+#       puts "matched: #{string[@index]} with #{substring[sub_index]}."
+#       sub_index += 1
+#       @index += 1
+#       puts "Incrementing @index in substring_match: #{@index}"
+#     else
+#       puts "Missmatch: #{string[@index]} with #{substring[sub_index]}."
+#       matched = false
+#       # sub_index += 1
+#       # @index += 1
+#       # puts "Incrementing @index in substring_match: #{@index}"
+#       return false
+#     end
+#   end
+#
+#   puts "Full Substring Matched!!" if matched
+#   return matched
+# end
+#
+# puts find_substring("coowocowowcowoccowo", "cow")
 
 
 # def is_palindrome?(string)
