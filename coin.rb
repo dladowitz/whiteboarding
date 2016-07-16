@@ -58,5 +58,62 @@ def better_difference_between(array, difference)
   p results
 end
 
-better_difference_between([10,5,3,11,16,5], 5)
+
+
+def new_difference(array, differance)
+  results = []
+  outer_index = 0
+
+  while outer_index < array.length
+    inner_index = outer_index + 1
+
+    while inner_index < array.length
+      if array[outer_index] - differance == array[inner_index] || array[outer_index] + differance == array[inner_index]
+        results << [array[outer_index], array[inner_index]]
+      end
+      inner_index +=1
+    end
+
+    outer_index += 1
+  end
+
+  p results
+end
+
+# better_difference_between([10,5,3,11,16,5], 5)
 # difference_between([10,5,3,11,16,5], 5)
+# new_difference([10,5,3,11,16,5], 5)
+
+
+
+
+
+def print_board(board)
+  board.each do |row|
+    p row
+  end
+end
+
+
+def routes(height, width)
+  board = Array.new(height) { Array.new(width, 0)}
+
+  height.times do |row|
+    board[row][0] = 1
+  end
+
+  width.times do |column|
+    board[0][column] = 1
+  end
+
+  (1..height-1).each do |row|
+    (1..width-1).each do |column|
+      board[row][column] = board[row-1][column] + board[row][column-1]
+    end
+  end
+
+  print_board(board)
+  puts board[height-1][width-1]
+end
+
+# routes(4, 4)

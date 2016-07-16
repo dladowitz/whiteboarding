@@ -1,39 +1,92 @@
-class MyQueue
-  def initialize
-    @stack1 = []
-    @stack2 = []
-  end
-
-  def enqueue(element)
-    @stack1.push element
-    puts "Queue length is: #{length}"
-  end
-
-  def dequeue
-    if @stack2.empty? && @stack1.empty?
-      puts "Queue is empty"
-    elsif @stack2.empty?
-      transfer
-      puts "Queue length is: #{length-1}"
-      @stack2.pop
-    else
-      puts "Queue length is: #{length-1}"
-      @stack2.pop
-    end
-  end
-
-  def length
-    @stack1.length + @stack2.length
-  end
-
-  private
-
-  def transfer
-    until @stack1.empty?
-      @stack2 << @stack1.pop
-    end
+def print_board(board)
+  board.each do |row|
+    p row
   end
 end
+
+
+def routes(height, width)
+  board = Array.new(height) { Array.new(width, 0)}
+
+  height.times do |row|
+    board[row][0] = 1
+  end
+
+  width.times do |column|
+    board[0][column] = 1
+  end
+
+  (1..height-1).each do |row|
+    (1..width-1).each do |column|
+      board[row][column] = board[row-1][column] + board[row][column-1]
+    end
+  end
+
+  print_board(board)
+  puts board[height-1][width-1]
+end
+
+routes(4, 4)
+
+
+
+
+
+
+# for i in xrange(1,m):
+#           for j in xrange(1,n):
+#               mp[i][j]=mp[i-1][j]+mp[i][j-1]
+
+
+# def routes(height, width)
+#   count = height + (width-2)*(height-1) + (height-2)*(width-1)
+#   return count
+# end
+#
+#
+# puts routes(3,4)
+# puts routes(4,4)
+# puts routes(3,5)
+
+
+
+
+# class MyQueue
+#   def initialize
+#     @stack1 = []
+#     @stack2 = []
+#   end
+#
+#   def enqueue(element)
+#     @stack1.push element
+#     puts "Queue length is: #{length}"
+#   end
+#
+#   def dequeue
+#     if @stack2.empty? && @stack1.empty?
+#       puts "Queue is empty"
+#     elsif @stack2.empty?
+#       transfer
+#       puts "Queue length is: #{length-1}"
+#       @stack2.pop
+#     else
+#       puts "Queue length is: #{length-1}"
+#       @stack2.pop
+#     end
+#   end
+#
+#   def length
+#     @stack1.length + @stack2.length
+#   end
+#
+#   private
+#
+#   def transfer
+#     until @stack1.empty?
+#       @stack2 << @stack1.pop
+#     end
+#   end
+# end
 
 
 
