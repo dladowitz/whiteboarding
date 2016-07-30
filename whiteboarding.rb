@@ -1,32 +1,89 @@
-def print_board(board)
-  board.each do |row|
-    p row
-  end
-end
-
-
-def routes(height, width)
-  board = Array.new(height) { Array.new(width, 0)}
-
-  height.times do |row|
-    board[row][0] = 1
-  end
-
-  width.times do |column|
-    board[0][column] = 1
-  end
-
-  (1..height-1).each do |row|
-    (1..width-1).each do |column|
-      board[row][column] = board[row-1][column] + board[row][column-1]
+def flatten(array, flat = [])
+  array.each do |elem|
+    if elem.is_a? Fixnum
+      flat << elem
+    else
+      flatten(elem, flat)
     end
   end
 
-  print_board(board)
-  puts board[height-1][width-1]
+  p flat
 end
 
-routes(4, 4)
+def flatten_helper(array)
+  @flat = []
+
+  build_flat(array)
+
+  p @flat
+end
+
+def build_flat(array)
+  array.each do |elem|
+    if elem.is_a? Fixnum
+      @flat << elem
+    else
+      build_flat(elem)
+    end
+  end
+end
+
+def flatten_within(array)
+  flat = []
+
+  def build_array(array)
+    array.each do |elem|
+      if elem.is_a? Fixnum
+        flat << elem
+      else
+        build_array(elem)
+      end
+    end
+  end
+
+  build_array(array)
+
+  p flat
+end
+
+
+array = [1,4,3,[4,2,[1,1],2],6]
+# flatten(array)
+# flatten_helper(array)
+flatten_within(array)
+
+
+
+
+# def print_board(board)
+#   board.each do |row|
+#     p row
+#   end
+# end
+#
+#
+# def routes(height, width)
+#   board = Array.new(height) { Array.new(width, 0)}
+#
+#   height.times do |row|
+#     board[row][0] = 1
+#   end
+#
+#   width.times do |column|
+#     board[0][column] = 1
+#   end
+#
+#   (1..height-1).each do |row|
+#     (1..width-1).each do |column|
+#       board[row][column] = board[row-1][column] + board[row][column-1]
+#     end
+#   end
+#
+#   print_board(board)
+#   puts board[height-1][width-1]
+# end
+#
+# routes(4, 4)
 
 
 
