@@ -1,9 +1,13 @@
-array = [2,9,8,4,7,9]
+array = [2,9,8,4,7,9,10]
 
 def longest_seq(array)
   longest = 0
 
   array.each_with_index do |number, index|
+    if longest >= array.length - index
+      puts "Ending Early"
+      break
+    end
     inner_index = index + 1
     temp_max = 1
 
