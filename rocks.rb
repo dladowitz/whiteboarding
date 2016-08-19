@@ -37,4 +37,33 @@ def recursive_map(array, proc_arg, index = 0, new_array = [])
   end
 end
 
-p recursive_map(array, double)
+# p recursive_map(array, double)
+
+20
+array = [10, 5, 8, 10]
+def find_pairs(array, sum)
+  matches = []
+  index_matches = []
+
+  array.each_with_index do |number1, index1|
+    array.each_with_index do |number2, index2|
+      if ((number1 + number2) == sum) && (index_matches.length == 0)
+        matches << [number1, number2]
+        index_matches << [index1, index2]
+        break
+      elsif ((number1 + number2) == sum)
+        break if index_matches.include? [index1, index2]
+        break if index_matches.include? [index2, index1]
+        matches << [number1, number2]
+        index_matches << [index1, index2]
+        break
+      end
+    end
+  end
+
+  print matches
+  puts " "
+  print index_matches
+end
+
+find_pairs(array, 15)
