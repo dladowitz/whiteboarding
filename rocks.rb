@@ -1,6 +1,6 @@
 def find_largest(array)
-  if array.length <= 1
-    return array[0]
+  if array.length <= 2
+    return array.max
   else
     mid = (array.length / 2) - 1
     left_array = array[0.. mid]
