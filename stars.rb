@@ -28,14 +28,32 @@
 #   word == word.reverse
 # end
 
+# def is_palindrome?(word)
+#   reversed = ""
+#   word.split("").each {|char| reversed.prepend char}
+#   return reversed == word
+# end
+
 def is_palindrome?(word)
-  reversed = ""
-  word.split("").each {|char| reversed.prepend char}
-  return reversed == word
+  word.split("").each_with_index do |char, index|
+    break if index > (word.length / 2) - 1
+    return false if char != word[-1-index]
+  end
+
+  true
 end
+
+def find_palindromes(sentance)
+  words = sentance.split
+  palindromes = words.select { |word| is_palindrome? word }
+end
+
 
 p true == is_palindrome?("anna")
 p true == is_palindrome?("racecar")
 p false == is_palindrome?("david")
 p true == is_palindrome?("davad")
 p true == is_palindrome?("an na")
+
+p ["anna", "racecar"] == find_palindromes("Hello anna Lets take out your racecar today")
+p ["take", "racecar"] != find_palindromes("Hello anna Lets take out your racecar today")
