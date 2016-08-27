@@ -23,9 +23,6 @@ def frequency_count(elements)
   frequency_count
 end
 
-
-
-
 p ["red", "black"] == most_frequent(["red", "green", "black", "black", "red"])
 p ["red", "black"] != most_frequent(["red", "green", "black", "black", "red", "green"])
 p ["red"] == most_frequent(["red", "green",  "black", "red"])
