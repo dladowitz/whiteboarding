@@ -1,9 +1,11 @@
 def selection_sort(array)
-  array.each_with_index do |element, index|
-    array = swap_smallest(index, array)
+  array.length.times do |index|
+    if index < array.length - 1
+      array = swap_smallest(index, array)
+    else
+      return array
+    end
   end
-
-  array
 end
 
 def swap_smallest(subject_index, array)
@@ -18,7 +20,7 @@ def swap_smallest(subject_index, array)
     test_index += 1
   end
 
-  if array[smallest_index] && array[smallest_index] < array[subject_index]
+  if array[smallest_index] < array[subject_index]
     swap(subject_index, smallest_index, array)
   end
 
@@ -29,7 +31,6 @@ def swap(index1, index2, array)
   temp = array[index1]
   array[index1] = array[index2]
   array[index2] = temp
-
 end
 
 
